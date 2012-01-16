@@ -1,0 +1,22 @@
+# Google+ Profile Link
+
+This Chrome extension detects and provides a link to the Google+ profile for
+the page currently being viewed.
+
+Google defines two primary methods for linking to a Google+ profile or page
+from a website.  Author information for a page can be specified using a
+[rel="author"][rel-author] link, causing the author data to appear in search
+results.  Businesses can use a [rel="publisher"][rel-publisher] link to connect
+a website with a Google+ page, making the site eligible for things like +1
+consolidation and Google+ Direct Connect.
+
+If these links are created using visible `&lt;a&gt;` tags or using a [Google+
+badge][], then you can those to navigate to the Google+ profile or page.
+However, if a non-visible `&lt;link&gt;` tag is used, there may be no
+indication that a Google+ profile even exists for the site.  This Chrome
+extensions detects links to the Google+ profile or page associated with the
+site currently being viewed and adds an icon to the URL bar that links to it.
+
+[rel-author]: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1408986
+[rel-publisher]: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1708844
+[Google+ badge]: https://developers.google.com/+/plugins/badge/
