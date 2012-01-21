@@ -2,20 +2,21 @@ test("Link detection", function() {
   // various permutations of the URL scheme
   testLinkProfile('http://plus.google.com/123', 'author', true);
   testLinkProfile('https://plus.google.com/123', 'author', true);
-  testLinkProfile('//plus.google.com/123', 'author', 'https://plus.google.com/123');
 
   // various rel values, including multi-value
   testLinkProfile('https://plus.google.com/123', 'author', true);
   testLinkProfile('https://plus.google.com/123', 'publisher', true);
   testLinkProfile('https://plus.google.com/123', 'me', true);
   testLinkProfile('https://plus.google.com/123', 'other author', true);
+  testLinkProfile('https://plus.google.com/123', 'publisher other', true);
 
   // rel value included as query parameter on the URL
-  testLinkProfile('https://plus.google.com/123?rel=author', '', 'https://plus.google.com/123');
+  testLinkProfile('https://plus.google.com/123?rel=author', '', true);
   testLinkProfile('https://plus.google.com/123?rel=other', '', null);
 
   // non-matching rel values
   testLinkProfile('https://plus.google.com/123', '', null);
+  testLinkProfile('https://plus.google.com/123', 'authors', null);
   testLinkProfile('https://plus.google.com/123', 'other', null);
 
   // non-matching URLs

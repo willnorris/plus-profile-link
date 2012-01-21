@@ -1,5 +1,6 @@
-var gplus_rels = ['author', 'publisher', 'me'];
-var href_regex = /^https?:\/\/plus.google.com\/.+/
+var valid_rels = ['author', 'publisher', 'me'];
+var valid_host = 'plus.google.com';
+
 
 /**
  * Determine if the provided link element contains a link to a Google+ profile.
@@ -13,23 +14,54 @@ var href_regex = /^https?:\/\/plus.google.com\/.+/
  *                   provided link does not contain a Google+ profile URL
  */
 function getProfileUrl(link) {
-  var href = link.getAttribute('href');
+  var url = parseURL(link.href);
 
-  // handle scheme-less URLs
-  if ( href.indexOf('//') == 0 ) {
-    href = 'https:' + href;
-  }
+  var rels = [];
+  if (link.rel) rels = rels.concat(link.rel.split(' '));
+  if (url.params.rel) rels = rels.concat(url.params.rel.split(' '));
 
-  var rel_attr = link.getAttribute('rel');
-  var rels = rel_attr ? rel_attr.split(' ') : [];
-
-  if (href_regex.test(href)) {
+  if (url.host == valid_host && url.path.length > 1) {
     for (var i=0; i<rels.length; i++) {
-      if (gplus_rels.indexOf(rels[i]) >= 0) {
-        return href;
+      if (valid_rels.indexOf(rels[i]) >= 0) {
+        return url.source;
       }
     }
   }
 
   return null;
+}
+
+
+/**
+ * Parse a URL using the DOM.
+ *
+ * @author James Padolsey
+ * @see http://james.padolsey.com/javascript/parsing-urls-with-the-dom/
+ */
+function parseURL(url) {
+  var a =  document.createElement('a');
+  a.href = url;
+  return {
+    source: url,
+    protocol: a.protocol.replace(':',''),
+    host: a.hostname,
+    port: a.port,
+    query: a.search,
+    params: (function(){
+      var ret = {},
+        seg = a.search.replace(/^\?/,'').split('&'),
+        len = seg.length, i = 0, s;
+      for (;i<len;i++) {
+        if (!seg[i]) { continue; }
+        s = seg[i].split('=');
+        ret[s[0]] = s[1];
+      }
+      return ret;
+    })(),
+    file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
+    hash: a.hash.replace('#',''),
+    path: a.pathname.replace(/^([^\/])/,'/$1'),
+    relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
+    segments: a.pathname.replace(/^\//,'').split('/')
+  };
 }

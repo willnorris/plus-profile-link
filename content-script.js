@@ -16,7 +16,6 @@ function walk_nodelist(nodes) {
     var href = getProfileUrl(nodes[i]);
     if (href) {
       // found Google+ profile link, so notify the background page.
-      console.log(nodes[i]);
       var request = { 'href': href };
       chrome.extension.sendRequest(request, function(response) {});
       return true;
