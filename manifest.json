@@ -13,7 +13,7 @@
         "http://*/*",
         "https://*/*"
       ],
-      "js": ["content-script.js"],
+      "js": ["functions.js", "content-script.js"],
       "run_at": "document_idle",
       "all_frames": false
     }
