@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        min-width: 150px;
+      }
+    </style>
+
+    <script src="functions.js"></script>
+    <script>
+      (function() {
+        chrome.windows.getCurrent(function(win) {
+          chrome.tabs.query({active:true, windowId:win.id}, function(tabs) {
+            // open profile URL when link is clicked
+            document.getElementById('profile-link').addEventListener('click', function() {
+              var request = {'method':'openProfileUrl', tab:tabs[0]};
+              chrome.extension.sendRequest(request, function(response) {});
+            });
+          });
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <p><a id="profile-link" href="">Google+ Profile</a></p>
+  </body>
+</html>

@@ -35,7 +35,6 @@ test("brand badge detection", function() {
   equals(getProfileUrl(badge), null, badge);
 
   badge = $('<div>', {'data-href':'http://plus.google.com/123', 'class':'g-plus'})[0];
-  console.log(badge);
   equals(getProfileUrl(badge), 'http://plus.google.com/123', badge);
 
   badge = $('<div>', {'data-href':'http://example.com/','class':'g-plus'})[0];

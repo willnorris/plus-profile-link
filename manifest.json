@@ -8,10 +8,15 @@
     "128": "images/icon-128.png"
   },
 
+  "permissions": [
+    "tabs"
+  ],
+
   "background_page": "background.html",
   "page_action": {
     "default_icon": "images/icon-16.png",
-    "default_title": "Open Google+ Profile"
+    "default_title": "Open Google+ Profile",
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
