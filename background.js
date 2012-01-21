@@ -19,7 +19,10 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
  * Open profile URL when the page action icon is clicked.
  */
 chrome.pageAction.onClicked.addListener(function(tab) {
-  chrome.tabs.create({'url': profileUrls[tab.id]});
+  chrome.tabs.create({
+    'url': profileUrls[tab.id],
+    'index': tab.index + 1
+  });
 });
 
 
