@@ -43,6 +43,17 @@ test("brand badge detection", function() {
 });
 
 
+test("extract profile ID", function() {
+  testExtractProfileId("http://plus.google.com/123456789012345678901", "123456789012345678901");
+  testExtractProfileId("http://plus.google.com/u/0/123456789012345678901", "123456789012345678901");
+  testExtractProfileId("http://plus.google.com/b/0/123456789012345678901", "123456789012345678901");
+  testExtractProfileId("http://plus.google.com/b/0/u/1/123456789012345678901", "123456789012345678901");
+  testExtractProfileId("http://plus.google.com/123456789012345678901?prsrc=3", "123456789012345678901");
+
+  testExtractProfileId("http://plus.google.com/12345", undefined);
+});
+
+
 /**
  * Test getting a profile URL from link data.
  *
@@ -58,4 +69,9 @@ function testLinkProfile(href, rel, expected) {
 
   var link = $('<link>', {href:href,rel:rel})[0];
   equals(getProfileUrl(link), expected, "link with href:'" + href + "' and rel:'" + rel + "'");
+}
+
+
+function testExtractProfileId(url, expected) {
+  equals(extractProfileId(url), expected, "extract profile id from: " + url);
 }

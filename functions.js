@@ -44,6 +44,25 @@ function getProfileUrl(link) {
 
 
 /**
+ * Extract the Google+ profile ID from the profile URL.  The ID is a 21-digit
+ * number that appears in the path of the profile URL.  Ideally, it should the
+ * only thing in the path, but people will oftentimes copy and paste URLs that
+ * contain multi-login data, which can be identified by path segements like
+ * "/u/0/" or "/b/0/".  Just to make things easy, we extract the ID from the
+ * URL by matching the first long string of numbers.
+ *
+ * @param {String} url Google+ profile URL to extract ID from
+ * @returns {String} Google+ profile ID or undefined if ID not found
+ */
+function extractProfileId(url) {
+  var id_regex = /[0-9]{21}/;
+  var matches = id_regex.exec(url);
+  if (matches) {
+    return matches[0];
+  }
+}
+
+/**
  * Parse a URL using the DOM.
  *
  * @author James Padolsey
