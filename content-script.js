@@ -5,15 +5,22 @@
 // test if any links to a Google+ profile are present
 var found = false;
 if (!found) {
-  found = walk_nodelist(document.getElementsByTagName('link'));
+  found = parseLinks(document.getElementsByTagName('link'));
 }
 if (!found) {
-  found = walk_nodelist(document.getElementsByTagName('a'));
+  found = parseLinks(document.getElementsByTagName('a'));
+}
+if (!found) {
+  found = parseLinks(document.getElementsByTagName('g:plus'));
+}
+if (!found) {
+  found = parseLinks(document.getElementsByClassName('g-plus'));
 }
 
-function walk_nodelist(nodes) {
-  for(var i=0; i<nodes.length; i++) {
-    var href = getProfileUrl(nodes[i]);
+
+function parseLinks(links) {
+  for(var i=0; i<links.length; i++) {
+    var href = getProfileUrl(links[i]);
     if (href) {
       // found Google+ profile link, so notify the background page.
       var request = { 'href': href };

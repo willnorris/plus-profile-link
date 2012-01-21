@@ -14,9 +14,20 @@ var valid_host = 'plus.google.com';
  *                   provided link does not contain a Google+ profile URL
  */
 function getProfileUrl(link) {
-  var url = parseURL(link.href);
+  var url, rels = [];
 
-  var rels = [];
+  if (link.tagName == 'G:PLUS') {
+    // Google+ brand badge
+    url = parseURL(link.getAttribute('href'));
+    rels.push('publisher');
+  } else if (link.tagName == 'DIV') {
+    // HTML5 Google+ brand badge
+    url = parseURL(link.getAttribute('data-href'));
+    rels.push('publisher');
+  }  else {
+    url = parseURL(link.href);
+  }
+
   if (link.rel) rels = rels.concat(link.rel.split(' '));
   if (url.params.rel) rels = rels.concat(url.params.rel.split(' '));
 
@@ -37,6 +48,8 @@ function getProfileUrl(link) {
  *
  * @author James Padolsey
  * @see http://james.padolsey.com/javascript/parsing-urls-with-the-dom/
+ * @param {String} url URL to parse
+ * @returns {Object} object with parsed URL data
  */
 function parseURL(url) {
   var a =  document.createElement('a');
