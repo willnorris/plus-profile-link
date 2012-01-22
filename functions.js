@@ -1,5 +1,6 @@
 var valid_rels = ['author', 'publisher', 'me'];
 var valid_host = 'plus.google.com';
+var api_key = '';
 
 
 /**
@@ -90,7 +91,7 @@ function getProfileData(id, callback) {
     url: 'https://www.googleapis.com/plus/v1/people/' + id,
     dataType: 'jsonp',
     data: {
-      'key': ''
+      'key': api_key
     },
     success: function(response) {
       callback(response);

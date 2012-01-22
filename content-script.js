@@ -20,10 +20,10 @@ if (!found) {
 
 function parseLinks(links) {
   for(var i=0; i<links.length; i++) {
-    var url = getProfileUrl(links[i]);
-    if (url) {
-      // found Google+ profile URL, so notify the background page.
-      var request = { method:"setProfileUrl", url:url };
+    var id = getProfileId(links[i]);
+    if (id) {
+      // found Google+ profile ID, so notify the background page.
+      var request = { method:"setProfileId", id:id };
       chrome.extension.sendRequest(request, function(response) {});
       return true;
     }

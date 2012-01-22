@@ -1,7 +1,7 @@
 /**
  * Dictionary of detected profile URLs keyed off of tabId.
  */
-var profileUrls = {}
+var profileIds = {}
 
 
 /**
@@ -9,21 +9,21 @@ var profileUrls = {}
  */
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
   switch (request.method) {
-    case "setProfileUrl":
-      profileUrls[sender.tab.id] = request.url;
+    case "setProfileId":
+      profileIds[sender.tab.id] = request.id;
       chrome.pageAction.show(sender.tab.id);
       sendResponse({});
       break;
 
-    case "getProfileUrl":
+    case "getProfileId":
       var tab = request.tab ? request.tab : sender.tab;
-      sendResponse({url:profileUrls[tab.id]});
+      sendResponse({url:profileIds[tab.id]});
       break;
 
     case "openProfileUrl":
       var tab = request.tab ? request.tab : sender.tab;
       chrome.tabs.create({
-        'url': profileUrls[tab.id],
+        'url': 'https://plus.google.com/' + profileIds[tab.id],
         'index': tab.index + 1
       }, function(tab) {
         // mark new tab as selected so that popup window hides
@@ -33,8 +33,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 
     case "getProfileData":
       var tab = request.tab ? request.tab : sender.tab;
-      var profileId = extractProfileId(profileUrls[tab.id]);
-      getProfileData(profileId, function(data) {
+      getProfileData(profileIds[tab.id], function(data) {
         sendResponse(data);
       });
       break;
@@ -46,6 +45,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
  * Cleanup when tabs are closed.
  */
 chrome.tabs.onRemoved.addListener(function(tabId) {
-  delete profileUrls[tabId];
+  delete profileIds[tabId];
 });
 
