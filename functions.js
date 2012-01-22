@@ -62,6 +62,30 @@ function extractProfileId(url) {
   }
 }
 
+
+/**
+ * Fetch profile data from the Google+ API.  This function requires that jQuery
+ * is present.
+ *
+ * TODO(willnorris): remove jQuery requirement?
+ *
+ * @param {String} id Google+ profile ID to fetch
+ * @param {Function} callback callback function called with profile data
+ */
+function getProfileData(id, callback) {
+  jQuery.ajax({
+    url: 'https://www.googleapis.com/plus/v1/people/' + id,
+    dataType: 'jsonp',
+    data: {
+      'key': ''
+    },
+    success: function(response) {
+      callback(response);
+    }
+  });
+}
+
+
 /**
  * Parse a URL using the DOM.
  *

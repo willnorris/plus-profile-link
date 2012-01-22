@@ -30,6 +30,14 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
         chrome.tabs.update(tab.id, {selected:true});
       });
       break;
+
+    case "getProfileData":
+      var tab = request.tab ? request.tab : sender.tab;
+      var profileId = extractProfileId(profileUrls[tab.id]);
+      getProfileData(profileId, function(data) {
+        sendResponse(data);
+      });
+      break;
   }
 });
 

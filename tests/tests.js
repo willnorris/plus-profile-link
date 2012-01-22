@@ -52,6 +52,12 @@ test("extract profile ID", function() {
   testExtractProfileId("http://plus.google.com/12345", undefined);
 });
 
+asyncTest("fetch profile data", function() {
+  getProfileData('111832530347449196055', function(data) {
+    equals('Will Norris', data.displayName, 'verify diaplay name');
+    start();
+  });
+});
 
 /**
  * Test getting a profile URL from link data.
