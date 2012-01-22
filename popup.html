@@ -20,10 +20,12 @@
             });
 
             // fetch and display profile data
-            var request = {'method':'getProfileData', tab:tabs[0]};
+            var request = {'method':'getProfileId', tab:tabs[0]};
             chrome.extension.sendRequest(request, function(response) {
-              jQuery('#displayName').text(response.displayName);
-              jQuery('#image').attr('src', response.image.url);
+              getProfileData(response.id, function(profile) {
+                jQuery('#displayName').text(profile.displayName);
+                jQuery('#image').attr('src', profile.image.url);
+              });
             });
           });
         });

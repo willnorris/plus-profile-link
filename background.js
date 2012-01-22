@@ -1,5 +1,5 @@
 /**
- * Dictionary of detected profile URLs keyed off of tabId.
+ * Dictionary of detected profile IDs keyed off of tabId.
  */
 var profileIds = {}
 
@@ -17,7 +17,7 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 
     case "getProfileId":
       var tab = request.tab ? request.tab : sender.tab;
-      sendResponse({url:profileIds[tab.id]});
+      sendResponse({id:profileIds[tab.id]});
       break;
 
     case "openProfileUrl":
@@ -28,13 +28,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
       }, function(tab) {
         // mark new tab as selected so that popup window hides
         chrome.tabs.update(tab.id, {selected:true});
-      });
-      break;
-
-    case "getProfileData":
-      var tab = request.tab ? request.tab : sender.tab;
-      getProfileData(profileIds[tab.id], function(data) {
-        sendResponse(data);
       });
       break;
   }
