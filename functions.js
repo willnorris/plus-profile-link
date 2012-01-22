@@ -10,7 +10,7 @@ var valid_host = 'plus.google.com';
  * attribute, or as a query paramter on the href URL.
  *
  * @param {Element} link the <link> or <a> element to check
- * @returns {String} the Google+ profile URL in the link, or null if the
+ * @returns {String} the Google+ profile URL in the link, or undefined if the
  *                   provided link does not contain a Google+ profile URL
  */
 function getProfileUrl(link) {
@@ -38,8 +38,21 @@ function getProfileUrl(link) {
       }
     }
   }
+}
 
-  return null;
+
+/**
+ * Get the Google+ profile ID from the profiel URL in the provided link element.
+ *
+ * @param {Element} link the element to check
+ * @returns {String} the Google+ profile ID in the element, or undefined if the
+ *                   provided link does not contain a Google+ profile ID
+ */
+function getProfileId(link) {
+  var url = getProfileUrl(link);
+  if (url) {
+    return extractProfileId(url);
+  }
 }
 
 
