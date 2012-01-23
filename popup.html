@@ -5,17 +5,37 @@
     <style>
       body {
         font-family: 'Arial', sans-serif;
-        font-size: 14px;
+        font-size: 13px;
         margin: 0;
         min-width: 300px;
       }
+      :link, :visited {
+        color: #36c;
+      }
       h1 {
         font-size: 125%;
+        font-weight: normal;
         margin: 0;
       }
       #image {
+        display: block;
         float: left;
         margin-right: 10px;
+        outline: none;
+      }
+      #image img {
+        width: 50px;
+        height: auto;
+      }
+      #image + div {
+        margin-left: 60px;
+      }
+      hr {
+        border: 0;
+        border-bottom: 1px solid #ddd;
+      }
+      div {
+        margin-bottom: 0.5em;
       }
     </style>
 
@@ -23,7 +43,7 @@
     <script>
       function displayProfile(id) {
         getProfileData(id, function(profile) {
-          jQuery('#image').attr('src', profile.image.url);
+          jQuery('#image img').attr('src', profile.image.url);
           jQuery('#displayName').text(profile.displayName);
           jQuery('#tagline').text(profile.tagline);
           jQuery('.profileLink').attr('href', profile.url).attr('target', '_blank');
@@ -71,11 +91,13 @@
     </script>
   </head>
   <body>
-    <a href="" class="profileLink"><img id="image"/></a>
-    <a href="" class="profileLink"><h1 id="displayName"></h1></a>
-    <div id="tagline"></div>
-    <br style="clear:left;"/>
-    <div id="employment"></div>
-    <div id="location"></div>
+    <a id="image" href="" class="profileLink"><img/></a>
+    <div>
+      <a href="" class="profileLink"><h1 id="displayName"></h1></a>
+      <div id="tagline"></div>
+      <hr/>
+      <div id="employment"></div>
+      <div id="location"></div>
+    </div>
   </body>
 </html>
