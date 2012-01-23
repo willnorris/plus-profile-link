@@ -17,6 +17,12 @@ if (!found) {
   found = parseLinks(document.getElementsByClassName('g-plus'));
 }
 
+if (!found) {
+  // lookup in sgapi
+  var request = { method:"sgapiLookup" };
+  chrome.extension.sendRequest(request, function(response) {});
+}
+
 
 function parseLinks(links) {
   for(var i=0; i<links.length; i++) {
