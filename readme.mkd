@@ -17,6 +17,8 @@ indication that a Google+ profile even exists for the site.  This Chrome
 extensions detects links to the Google+ profile or page associated with the
 site currently being viewed and adds an icon to the URL bar that links to it.
 
+[Privacy Policy](https://github.com/willnorris/plus-profile-link/blob/master/privacy.txt)
+
 [rel-author]: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1408986
 [rel-publisher]: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1708844
 [Google+ badge]: https://developers.google.com/+/plugins/badge/
