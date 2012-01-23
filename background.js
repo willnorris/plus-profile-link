@@ -20,6 +20,19 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
       sendResponse({id:profileIds[tab.id]});
       break;
 
+    case "getProfileData":
+      var profileId;
+      if (request.profileId) {
+        profileId = request.profileId;
+      } else {
+        var tab = request.tab ? request.tab : sender.tab;
+        profileId = profileIds[tab.id];
+      }
+      getProfileData(profileId, function(data) {
+        sendResponse(data);
+      });
+      break;
+
     case "sgapiLookup":
       if (localStorage['use_sgapi'] == 'true') {
         var tab = request.tab ? request.tab : sender.tab;
