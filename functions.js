@@ -1,6 +1,6 @@
 var valid_rels = ['author', 'publisher', 'me'];
 var valid_host = 'plus.google.com';
-var api_key = '';
+var api_key = 'AIzaSyBqg2LrzdDQpfhViIircxi1FBDFqjn34w4';
 
 
 /**
@@ -81,8 +81,6 @@ function extractProfileId(url) {
  * Fetch profile data from the Google+ API.  This function requires that jQuery
  * is present.
  *
- * TODO(willnorris): remove jQuery requirement?
- *
  * @param {String} id Google+ profile ID to fetch
  * @param {Function} callback callback function called with profile data
  */
@@ -93,8 +91,12 @@ function getProfileData(id, callback) {
     data: {
       'key': api_key
     },
-    success: function(response) {
-      callback(response);
+    success: function(response, textStatus, xhr) {
+      if (response.error) {
+        console.error('Google+ API Error', response.error, xhr);
+      } else {
+        callback(response);
+      }
     }
   });
 }

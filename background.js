@@ -19,17 +19,6 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
       var tab = request.tab ? request.tab : sender.tab;
       sendResponse({id:profileIds[tab.id]});
       break;
-
-    case "openProfileUrl":
-      var tab = request.tab ? request.tab : sender.tab;
-      chrome.tabs.create({
-        'url': 'https://plus.google.com/' + profileIds[tab.id],
-        'index': tab.index + 1
-      }, function(tab) {
-        // mark new tab as selected so that popup window hides
-        chrome.tabs.update(tab.id, {selected:true});
-      });
-      break;
   }
 });
 
