@@ -29,27 +29,31 @@
           jQuery('.profileLink').attr('href', profile.url).attr('target', '_blank');
 
           // company
-          jQuery.each(profile.organizations, function(idx, org) {
-            if (org.type == 'work') {
-              var company = '<b>Employment:</b> ' + org.name;
-              if (org.title) {
-                company += ' (' + org.title + ')';
+          if (profile.organizations) {
+            jQuery.each(profile.organizations, function(idx, org) {
+              if (org.type == 'work') {
+                var company = '<b>Employment:</b> ' + org.name;
+                if (org.title) {
+                  company += ' (' + org.title + ')';
+                }
+                jQuery('#employment').html(company);
+                return false;
               }
-              jQuery('#employment').html(company);
-              return false;
-            }
-          });
+            });
+          }
 
           // location
-          var placeName;
-          jQuery.each(profile.placesLived, function(idx, place) {
-            if (!placeName || place.primary) {
-              placeName = place.value;
+          if (profile.placesLived) {
+            var placeName;
+            jQuery.each(profile.placesLived, function(idx, place) {
+              if (!placeName || place.primary) {
+                placeName = place.value;
+              }
+            });
+            if (placeName) {
+              jQuery('#location').html('<b>Location:</b> ' +
+                '<a href="http://maps.google.com/maps?q=' + placeName + '" target="_blank">' + placeName + '</a>');
             }
-          });
-          if (placeName) {
-            jQuery('#location').html('<b>Location:</b> ' +
-              '<a href="http://maps.google.com/maps?q=' + placeName + '" target="_blank">' + placeName + '</a>');
           }
         });
       }
