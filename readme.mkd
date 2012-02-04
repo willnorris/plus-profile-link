@@ -26,6 +26,10 @@ page you visit will be looked up in the SGAPI to attempt to find an associated
 Google+ profile.  The SGAPI has been officially deprecated, so this feature
 will likely be removed in the future, but is provided as a proof of concept.
 
+When you click the address bar icon, a small popup window displays basic public
+information for the associated Google+ profile.  You can then easily open the
+full profile to get more information and add them to your circles.
+
 
 ## Privacy Policy ##
 
