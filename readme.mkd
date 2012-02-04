@@ -1,4 +1,4 @@
-# Google+ Profile Link #
+# +Profile Link #
 
 Detect and display information about the Google+ profile for the URL currently
 being viewed.
@@ -41,10 +41,11 @@ are viewing, though the URL itself that you are viewing is **not** passed to
 the API.
 
 Except as described above, no other data is stored or shared with any other
-parties. Any data passed to Google APIs is subject to the Google Privacy
-Policy <http://www.google.com/privacy/>.
+parties. Any data passed to Google APIs is subject to the [Google Privacy
+Policy][].
 
 [rel-author]: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1408986
 [rel-publisher]: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1708844
 [Google+ badge]: https://developers.google.com/+/plugins/badge/
 [Social Graph API]: http://code.google.com/apis/socialgraph/
+[Google Privacy Policy]: http://www.google.com/privacy/
