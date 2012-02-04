@@ -1,24 +1,50 @@
-# Google+ Profile Link
+# Google+ Profile Link #
 
-This Chrome extension detects and provides a link to the Google+ profile for
-the page currently being viewed.
+Detect and display information about the Google+ profile for the URL currently
+being viewed.
 
-Google defines two primary methods for linking to a Google+ profile or page
-from a website.  Author information for a page can be specified using a
-[rel="author"][rel-author] link, causing the author data to appear in search
-results.  Businesses can use a [rel="publisher"][rel-publisher] link to connect
-a website with a Google+ page, making the site eligible for things like +1
-consolidation and Google+ Direct Connect.
+If you've ever come across a blog or website and wanted to add that person or
+site to your Google+ circles, then this extension may help.  If the site has a
+visible link or a Google+ badge for their profile, that makes it pretty easy.
+But if the page has a non-visible link or no link at all, you would need to go
+search for the person on Google+.  This extension helps detect if a Google+
+profile or page exists for the URL currently being viewed, and provides an icon
+in the address bar that will display information about the Google+ profile.
 
-If these links are created using visible `<a>` tags or using a [Google+
-badge][], then you can those to navigate to the Google+ profile or page.
-However, if a non-visible `<link>` tag is used, there may be no
-indication that a Google+ profile even exists for the site.  This Chrome
-extensions detects links to the Google+ profile or page associated with the
-site currently being viewed and adds an icon to the URL bar that links to it.
 
-[Privacy Policy](https://github.com/willnorris/plus-profile-link/blob/master/privacy.txt)
+## How it Works ##
+
+As you browse the web, the extension will look for certain links on the page
+you are viewing.  Specifically, it looks for `<a>` or `<link>` elements with a
+`rel` value of 'me', '[author][rel-author]', or '[publisher][rel-publisher]'.
+If one of these links points to a Google+ profile then the icon in the address
+bar is shown.  Additionally, if the page has a [Google+ badge][] which
+identifies the Google+ profile for the page, the icon will be shown.
+
+If you enable the _highly experimental_ [Social Graph API][] support, every
+page you visit will be looked up in the SGAPI to attempt to find an associated
+Google+ profile.  The SGAPI has been officially deprecated, so this feature
+will likely be removed in the future, but is provided as a proof of concept.
+
+
+## Privacy Policy ##
+
+This policy describes what data of yours the +Proflie Link chrome extension
+makes use of and everything that it does with that data.
+
+The extension requests access to all of your data on all websites as well as
+your tabs and browsing activity so that it can look for Google+ profile links.
+If you enable the Social Graph API support, **all** URLs you visit are looked
+up in Google's [Social Graph API][].  When you click on the address bar icon, a
+lookup is made to the Google+ API for the profile associated with the URL you
+are viewing, though the URL itself that you are viewing is **not** passed to
+the API.
+
+Except as described above, no other data is stored or shared with any other
+parties. Any data passed to Google APIs is subject to the Google Privacy
+Policy <http://www.google.com/privacy/>.
 
 [rel-author]: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1408986
 [rel-publisher]: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1708844
 [Google+ badge]: https://developers.google.com/+/plugins/badge/
+[Social Graph API]: http://code.google.com/apis/socialgraph/
