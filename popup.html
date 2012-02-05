@@ -45,7 +45,9 @@
         chrome.extension.sendRequest(request, function(profile) {
           document.querySelector('#image img').setAttribute('src', profile.image.url);
           document.querySelector('#displayName').innerText = profile.displayName;
-          document.querySelector('#tagline').innerText = profile.tagline;
+          if (profile.tagline) {
+            document.querySelector('#tagline').innerText = profile.tagline;
+          }
           var links = document.querySelectorAll('.profileLink');
           for (var i=0; i<links.length; i++) {
             links[i].setAttribute('href', profile.url);
