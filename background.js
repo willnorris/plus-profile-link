@@ -36,9 +36,9 @@ chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
     case "sgapiLookup":
       if (localStorage['use_sgapi'] == 'true') {
         var tab = request.tab ? request.tab : sender.tab;
-        var id = sgapiLookup(tab.url, function(id) {
+        sgapiLookup(tab.url, function(id) {
           profileIds[tab.id] = id;
-          chrome.pageAction.show(sender.tab.id);
+          chrome.pageAction.show(tab.id);
           sendResponse({});
         });
       }
