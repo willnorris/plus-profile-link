@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2012 Google. Licensed under the Apache License, Version 2.0.
+ */
+
 /**
  * Dictionary of detected profile IDs keyed off of tabId.
  */

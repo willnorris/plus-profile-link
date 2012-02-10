@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2012 Google. Licensed under the Apache License, Version 2.0.
+ */
+
 var valid_rels = ['author', 'publisher', 'me'];
 var valid_host = 'plus.google.com';
 var sgn_regex = /sgn:\/\/profiles.google.com\/\?pk=(.+)/;

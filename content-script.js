@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011 Will Norris. Licensed under the Apache License, Version 2.0.
+ * Copyright (c) 2012 Google. Licensed under the Apache License, Version 2.0.
  */
 
 // test if any links to a Google+ profile are present
