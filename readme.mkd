@@ -21,11 +21,6 @@ If one of these links points to a Google+ profile then the icon in the address
 bar is shown.  Additionally, if the page has a [Google+ badge][] which
 identifies the Google+ profile for the page, the icon will be shown.
 
-If you enable the _highly experimental_ [Social Graph API][] support, every
-page you visit will be looked up in the SGAPI to attempt to find an associated
-Google+ profile.  The SGAPI has been officially deprecated, so this feature
-will likely be removed in the future, but is provided as a proof of concept.
-
 When you click the address bar icon, a small popup window displays basic public
 information for the associated Google+ profile.  You can then easily open the
 full profile to get more information and add them to your circles.

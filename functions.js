@@ -4,7 +4,6 @@
 
 var valid_rels = ['author', 'publisher', 'me'];
 var valid_host = 'plus.google.com';
-var sgn_regex = /sgn:\/\/profiles.google.com\/\?pk=(.+)/;
 var api_key = 'AIzaSyBqg2LrzdDQpfhViIircxi1FBDFqjn34w4';
 
 
@@ -101,31 +100,6 @@ function getProfileData(id, callback) {
         console.error('Google+ API Error', response.error, xhr);
       } else {
         callback(response);
-      }
-    }
-  });
-}
-
-
-/**
- * Attempt to find the Google+ profile URL for the specified page using the
- * Social Graph API.  This method requires that jQuery is present.
- */
-function sgapiLookup(url, callback) {
-  jQuery.ajax({
-    url: 'https://socialgraph.googleapis.com/lookup',
-    dataType: 'jsonp',
-    data: {
-      q: url,
-      sgn: 1,
-      fme: 1
-    },
-    success: function(response) {
-      for (node in response.nodes) {
-        matches = sgn_regex.exec(node);
-        if (matches) {
-          callback(matches[1]);
-        }
       }
     }
   });

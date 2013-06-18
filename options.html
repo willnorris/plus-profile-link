@@ -6,12 +6,8 @@ Copyright (c) 2012 Google. Licensed under the Apache License, Version 2.0.
   <head>
     <script>
       function saveOptions() {
-        localStorage['use_sgapi'] = document.getElementById('use_sgapi').checked;
       }
       function restoreOptions() {
-        if (localStorage['use_sgapi'] == 'true') {
-          document.getElementById('use_sgapi').checked = true;
-        }
       }
     </script>
     <title>Google+ Profile Link Options</title>
@@ -19,26 +15,9 @@ Copyright (c) 2012 Google. Licensed under the Apache License, Version 2.0.
   <body onload="restoreOptions()">
     <section>
       <h2>Google+ Profile Link Options</h2>
-
-      <label>
-        <input type="checkbox" id="use_sgapi" />
-        Attempt to find Google+ Profile using the <a
-          href="http://code.google.com/apis/socialgraph/">Social Graph API</a>.
-      </label>
-
-      <p>
-        This feature is <strong>highly experimental</strong> and not recommended
-        for most users.  This will call the SGAPI to lookup every page you visit
-        (unless a Google+ profile was already found on the page by other means).
-        This may have both performance and privacy implications.  Also be aware
-        that <a
-          href="http://googleblog.blogspot.com/2012/01/renewing-old-resolutions-for-new-year.html">the
-          SGAPI has been deprecated and will be shutdown</a> on April 20, 2012.
-        This feature will likely be removed at that point if an
-        alternative service cannot be found.
-      </p>
-
+      <!--
       <button onclick="saveOptions()">Save</button>
+      -->
     </section>
 
     <p><a target="_blank" href="privacy.txt">Privacy Policy</a></p>

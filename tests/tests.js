@@ -69,14 +69,6 @@ asyncTest('fetch profile data', function() {
 });
 
 
-asyncTest('sgapi lookup', function() {
-  sgapiLookup('http://mattcutts.com', function(id) {
-    equal(id, '109412257237874861202', 'sgapi lookup for http://mattcutts.com');
-    start();
-  });
-});
-
-
 /**
  * Test getting a profile URL from link data.
  *
