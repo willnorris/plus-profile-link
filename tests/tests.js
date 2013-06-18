@@ -29,16 +29,16 @@ test('brand badge detection', function() {
   var badge;
 
   badge = $('<g:plus href="http://plus.google.com/123">')[0];
-  equals(getProfileUrl(badge), 'http://plus.google.com/123', badge);
+  equal(getProfileUrl(badge), 'http://plus.google.com/123', badge);
 
   badge = $('<g:plus>', {href:'http://example.com/'})[0];
-  equals(getProfileUrl(badge), undefined, badge);
+  equal(getProfileUrl(badge), undefined, badge);
 
   badge = $('<div>', {'data-href':'http://plus.google.com/123', 'class':'g-plus'})[0];
-  equals(getProfileUrl(badge), 'http://plus.google.com/123', badge);
+  equal(getProfileUrl(badge), 'http://plus.google.com/123', badge);
 
   badge = $('<div>', {'data-href':'http://example.com/','class':'g-plus'})[0];
-  equals(getProfileUrl(badge), undefined, badge);
+  equal(getProfileUrl(badge), undefined, badge);
 });
 
 
@@ -57,13 +57,13 @@ test('get profile ID from link', function() {
   var link;
 
   link = $('<a>', {'href': 'http://plus.google.com/123456789012345678901', 'rel':'author'})[0];
-  equals(getProfileId(link), '123456789012345678901', 'link with url: http://plus.google.com/123456789012345678901');
+  equal(getProfileId(link), '123456789012345678901', 'link with url: http://plus.google.com/123456789012345678901');
 });
 
 
 asyncTest('fetch profile data', function() {
   getProfileData('111832530347449196055', function(data) {
-    equals(data.displayName, 'Will Norris', 'verify diaplay name');
+    equal(data.displayName, 'Will Norris', 'verify diaplay name');
     start();
   });
 });
@@ -71,7 +71,7 @@ asyncTest('fetch profile data', function() {
 
 asyncTest('sgapi lookup', function() {
   sgapiLookup('http://mattcutts.com', function(id) {
-    equals(id, '109412257237874861202', 'sgapi lookup for http://mattcutts.com');
+    equal(id, '109412257237874861202', 'sgapi lookup for http://mattcutts.com');
     start();
   });
 });
@@ -91,7 +91,7 @@ function testLinkProfile(href, rel, expected) {
   }
 
   var link = $('<link>', {href:href,rel:rel})[0];
-  equals(getProfileUrl(link), expected, 'link with href:"' + href + '" and rel:"' + rel + '"');
+  equal(getProfileUrl(link), expected, 'link with href:"' + href + '" and rel:"' + rel + '"');
 }
 
 
@@ -102,5 +102,5 @@ function testLinkProfile(href, rel, expected) {
  * @param {String} expected the expected profile ID
  */
 function testExtractProfileId(url, expected) {
-  equals(extractProfileId(url), expected, 'extract profile id from: ' + url);
+  equal(extractProfileId(url), expected, 'extract profile id from: ' + url);
 }
