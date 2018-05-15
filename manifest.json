@@ -1,4 +1,5 @@
 {
+  "manifest_version": 2,
   "name": "Google+ Profile Link",
   "version": "1.0",
   "description": "Display a link to the Google+ profile for the page being viewed.",
@@ -12,7 +13,9 @@
     "tabs"
   ],
 
-  "background_page": "background.html",
+  "background": {
+    "page": "background.html"
+  },
   "options_page": "options.html",
 
   "page_action": {
@@ -26,9 +29,13 @@
         "http://*/*",
         "https://*/*"
       ],
-      "js": ["functions.js", "content-script.js"],
+      "js": [
+        "functions.js",
+        "content-script.js"
+      ],
       "run_at": "document_idle",
       "all_frames": false
     }
-  ]
+  ],
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
 }
